@@ -11,8 +11,7 @@ For simulation used in SEER-FISH, we used a ```MATLAB``` script to evaluate the 
 For analysis of the sequencing data, we used botiwe2 to align the sequencing data with the reference sequence and extract the OTU table.
 
 Thanks to @Junyu for his help on probe design.
-Thanks to @Yuxiang for his help on amplicon sequencing data analysis. 
-
+Thanks to @Yuxiang for his help on amplicon sequencing data analysis.
 
 ## Image Analysis
 
@@ -88,13 +87,13 @@ You need to list the sequences of probes and rRNAs in separated ```txt``` files.
 
 For example, ```ProbeSequence.txt``` 
 
-```
+```csv
 1, ~sequence of the probe~
 ```
 
 and ```rRNASeq.txt```
 
-```
+```csv
 1, ~sequence of 16S rRNA~, ~sequence of 23S rRNA~
 ```
 
@@ -103,6 +102,7 @@ Then run the script below to calculate the ΔG between each probe in ```ProbeSeq
 ```bash
 python ./MAthFISH/MathFISH.py -p ./MathFISH/ProbeSequence.txt -r ./MathFISH/rRNASeq.txt -o ./MathFISH/Output
 ```
+
 ### Code Generater
 
 You can use the following script to generate the code book with correspounding colors, rounds and minimal Hamming Distance (HD).
@@ -117,8 +117,6 @@ You can use the following script to generate the code book with correspounding c
 [F1ScoreHarmMean,F1ScoreMean,Detection] = F1ScoreCal(Specify,SpecifySTD,StrainCode,CellNum,CorrBit)
 ```
 
-### Demo
-
 ## Sequencing data analysis
 
 ### Requirement
@@ -131,6 +129,7 @@ conda install -c bioconda samtools # samtools
 conda install -c bioconda bowtie2 # bowtie2
 conda install -c bioconda bedtools # bedtools
 ```
+
 ```qiime2``` is required for merge and parse the double end sequencing data according to the barcodes.
 
 ### Merge and Parse
@@ -149,8 +148,8 @@ vsearch --fastq_mergepairs Path_to_the_forward.fastq.gz \
 
 ```bash
 python ./Seuencing/parse_sample_perfectmatch.py \
-		-i /Seuencing/merged.fq \
-		-t ./Seuencing/reference/sample_indexes.txt \
+        -i /Seuencing/merged.fq \
+        -t ./Seuencing/reference/sample_indexes.txt \
         -f 20 -r 18 
 ```
 
@@ -163,9 +162,9 @@ We use ```Bowtie2``` to align the sequencing result to reference sequence and ex
 ```bash
 conda deactivate
 bash /home/LDlab/BioSoft/Scripts/Bowtie2align_and_feature_extract.sh \
-		./Seuencing/parse \
-    ./Seuencing/reference/strains_v5_v7.fa \
-		./Seuencing1/reference/strains_bed.bed 
+        ./Seuencing/parse \
+        ./Seuencing/reference/strains_v5_v7.fa \
+        ./Seuencing1/reference/strains_bed.bed 
 ```
 
 The reference sequence of each strain is listed in the  ```.fa``` file. And the sequence info is listed in the ```.bed``` file.
@@ -192,9 +191,7 @@ for Index = 1:Length
     [Percentage, Barlength] = DisplayBar(Index, Length);
 end
 ```
+
 The bar would be shown in the command windows as below.
 
 ![](./Resource/DisplayBar.gif)
-
-
-
