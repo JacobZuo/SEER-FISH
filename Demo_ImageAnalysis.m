@@ -90,7 +90,8 @@ StrainCode(:, 12) = [1, 2, 3, 3, 2, 2, 3, 2];
 [StrainImageAll, ~] = LabelImage(BW_Image_Segment, Decode);
 
 StrainColors = ColorGenerator(max(Decode(:, 1)));
-StrainColors
+StrainColors(max(Decode(:, 1))+1,:)=[0.5,0.5,0.5];
+StrainColors(max(Decode(:, 1))+2,:)=[0.1,0.1,0.1];
 
 LabeledImage = labeloverlay(mat2gray(mean(PhaseImageShift(:, :, 1), 3)), StrainImageAll, 'ColorMap', StrainColors, 'Transparency', 0.25);
 
@@ -130,3 +131,20 @@ set(gca, 'FontSize', 16, 'LineWidth', 1.5)
 xlabel('Distance (um)')
 ylabel('Strain 4-5 Corr')
 box on
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
