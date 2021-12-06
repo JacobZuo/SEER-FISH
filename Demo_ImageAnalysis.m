@@ -85,4 +85,48 @@ StrainCode(:, 12) = [1, 2, 3, 3, 2, 2, 3, 2];
 
 [StrainLikehood, Decode] = StrainIdentify(StrainCode, CodexRes, 2);
 
-%% Data Output
+%% Image Output
+
+
+[StrainImageAll,~] = LabelImage(BW_Image_Segment,Decode);
+ 
+StrainColors=ColorGenerator(13);
+
+LabeledImage = labeloverlay(mat2gray(mean(PhaseImageShift(:,:,1),3)),StrainImageAll,'ColorMap',StrainColors,'Transparency',0.25);
+
+figure
+imshow(LabeledImage)
+
+%% Output Pair Correlation
+
+R=0.5:0.5:60;
+
+GR1 = PairCorrelation(StrainImageAll>0,StrainImageAll>0,ScaleX,R);
+
+figure('Position',[50,500,800,600])
+hold on
+plot(R,GR1,'k','LineWidth',1.5)
+plot([0 50],[1 1],'--k','LineWidth',1.5)
+axis([0 50 0 5])
+set(gcf,'Color',[1,1,1]);
+set(gca,'YColor','k')
+set(gca,'XColor','k')
+set(gca,'FontSize',16,'LineWidth',1.5)
+xlabel('Distance (um)')
+ylabel('Strain 4-5 Corr')
+box on
+
+GR2 = PairCorrelation(StrainImageAll==4,StrainImageAll==5,ScaleX,R);
+
+figure('Position',[50,500,800,600])
+hold on
+plot(R,GR2,'k','LineWidth',1.5)
+plot([0 50],[1 1],'--k','LineWidth',1.5)
+axis([0 50 0 5])
+set(gcf,'Color',[1,1,1]);
+set(gca,'YColor','k')
+set(gca,'XColor','k')
+set(gca,'FontSize',16,'LineWidth',1.5)
+xlabel('Distance (um)')
+ylabel('Strain 4-5 Corr')
+box on
