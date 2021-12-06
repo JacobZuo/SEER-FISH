@@ -30,7 +30,7 @@ To align other image stacks with the same position as ```Image```, you can use,
 [ImageAligned,Image2Aligned,Image3Aligned...] = Alignment(Image,Image2,Image3,..)
 ```
 
-### Image Segment
+### Image Segmentation
 
 To segment each bacterial cell in the image, you can use ```ImageSegment``` function. This function segment image based on auto threshold and watershed method. 
 
@@ -72,10 +72,34 @@ Then the obtained code will be identified according to the codebook and bits of 
 [StrainLikehood,Decode] = StrainIndentify(StrainCode,CodexRes,CorrBit)
 ```
 
+### Labeled Image
+
+The segmented images can be labeled according to the decode result.
+
+```matlab
+[StrainImageAll, StrainImage] = LabelImage(BW_Image_Segment, Decode)
+```
+
+Where ```StrainImageAll``` is the labeled image and ```StrainImage``` is the binary image of each strain. The unidentified strain is labeled as ```strainnum+1```.
+
+### Pair Correlation Analysis
+
+```PairCorrelation``` calculates the correlation of the bacteria in the images based on the the Linear Dipole Algorithm (Daims, H. & Wagner, M., 2011).
+
+```matlab
+[GR] = PairCorrelation(StrainImage1, StrainImage2, ScaleX, Range, varargin)
+```
+
+A mask can be used for the analysis by,
+
+```matlab
+[GR] = PairCorrelation(StrainImage1, StrainImage2, ScaleX, Range, 'Mask',Maskimage)
+```
+
+
 ### Demo
 
 The ```Demo``` of image anaysis is given in ```Demo_ImageAnalysis.m```
-
 
 ## Simulation
 
