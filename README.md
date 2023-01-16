@@ -66,10 +66,22 @@ First, the color of each bacteria cell will be identified according to the fluor
 [CodexRes] = ColorIdentify(SegmentedBWImage,FITCImage,TRITCImage,CY5Image,Index)
 ```
 
+You can also use ```ColorIdentify_Bright``` if you want to identify the color only by brightness of each channel.
+
+```matlab
+[CodexRes] = ColorIdentify_Bright(SegmentedBWImage,FITCImage,TRITCImage,CY5Image,Index)
+```
+
 Then the obtained code will be identified according to the codebook and bits of correction.
 
 ```matlab
 [StrainLikehood,Decode] = StrainIndentify(StrainCode,CodexRes,CorrBit)
+```
+
+The following code could do the process faster.
+
+```matlab
+[StrainLikehood,Decode] = StrainIndentifySim(StrainCode,CodexRes,CorrBit)
 ```
 
 ### Labeled Image
@@ -95,7 +107,17 @@ A mask can be used for the analysis by,
 ```matlab
 [GR] = PairCorrelation(StrainImage1, StrainImage2, ScaleX, Range, 'Mask',Maskimage)
 ```
+### Pair Association Analysis
 
+You can calculate the pair association with the folloing code.
+
+[...] = PairAssociation(CellInfoAll)
+
+Here ```CellInfoAll``` should be a ```cell``` contains all cell informations on all roots (1:10 for control, 11:20 for perturbation 1 and 21:30 for perturbation 3). The cell info included the strain type and cell location on root.
+
+### Process
+
+```ProcessStep1```, ```ProcessStep2``` and ```ProcessStep3``` give an example code about process multiple region images of root.
 
 ### Demo
 
