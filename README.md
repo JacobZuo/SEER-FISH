@@ -123,6 +123,8 @@ Here ```CellInfoAll``` should be a ```cell``` contains all cell informations on 
 
 The ```Demo``` of image anaysis is given in ```Demo_ImageAnalysis.m```
 
+Demo data is provided at [Zenodo](https://doi.org/10.5281/zenodo.5100490)
+
 ## Simulation
 
 ### MathFISH auto-submitter
