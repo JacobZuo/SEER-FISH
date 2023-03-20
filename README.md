@@ -13,6 +13,9 @@ For analysis of the sequencing data, we used botiwe2 to align the sequencing dat
 Thanks to @Junyu for his help on probe design.
 Thanks to @Yuxiang for his help on amplicon sequencing data analysis.
 
+## Cite As
+1. Cao, Z., Zuo, W., Wang, L. et al. Spatial profiling of microbial communities by sequential FISH with error-robust encoding. Nat Commun 14, 1477 (2023). https://doi.org/10.1038/s41467-023-37188-3
+
 ## Image Analysis
 
 ### Image Alignment
